@@ -18,4 +18,4 @@ def lambda_handler(event: dict, context) -> dict:
         response = lambda_handler({"key": "value"}, None)
         print(response)
     """
-    return responses.Lambda(HTTPStatus.OK, {"message": "hello world"})
+    return responses.default(HTTPStatus.OK, {"message": "hello world"})

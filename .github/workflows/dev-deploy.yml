@@ -27,8 +27,8 @@ jobs:
       - run: >-
           sam deploy --no-confirm-changeset
           --no-fail-on-empty-changeset
-          --stack-name clone-template-lambdas-python-dev
-          --s3-prefix clone-template-lambdas-python-dev
+          --stack-name clone-client-dev
+          --s3-prefix clone-client-dev
           --resolve-s3
           --capabilities CAPABILITY_NAMED_IAM
           --parameter-overrides
