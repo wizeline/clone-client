@@ -1,7 +1,7 @@
 -include .env
 
 
-PROJECT_NAME=clone-template-lambdas-python
+PROJECT_NAME=clone-client
 STAGE=dev
 FULL_PROJECT_NAME=${PROJECT_NAME}-${STAGE}
 
