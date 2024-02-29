@@ -1,14 +1,6 @@
 # clone-client
 
-> **Warning**
->
-> This is a template, before you start coding make sure to rename the following files with you project name
->
-> 1. The Sonar Project name in ```sonar-project.properties```
-> 1. The project references in ```template.yaml```
-> 1. The Github actions names in ```.github/workflows```
-
-This project contains the source of a tool for the ClonAI main project
+This project contains the handler function to the CloneAI Client
 
 ```bash
 .
@@ -53,6 +45,21 @@ The `sam build` command is wrapped inside of the `Makefile`. To execute this sim
 
 ```shell
 make build
+```
+
+### Setup your VSCode (optional)
+
+In order to VSCode can resolve dependencies in the shared_layer directory, add (o create if you don't have it) the folowing code to your `.vscode/settings.json`
+
+```json
+{
+  "python.analysis.extraPaths": [
+    "shared_layer/python"
+  ],
+  "python.autoComplete.extraPaths": [
+    "shared_layer/python"
+  ]
+}
 ```
 
 ## Packaging and deployment
