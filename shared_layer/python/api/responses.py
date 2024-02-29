@@ -2,7 +2,7 @@ import json
 from typing import Any, Dict
 
 
-def Lambda(code: int, body: Dict[str, Any]) -> dict:
+def default(code: int, body: Dict[str, Any]) -> dict:
     """
     Generate a response object for AWS Lambda functions.
 
