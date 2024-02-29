@@ -1,0 +1,30 @@
+name: Build check
+permissions:
+  id-token: write
+  contents: read
+on:
+  pull_request:
+    branches:
+      - "**"
+jobs:
+  build-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v3
+      - uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+      - uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - run: pip install coverage pytest
+      - run: pip install -r **/requirements.txt
+      - run: coverage run -m pytest
+      - run: coverage report
+      - run: sam build -t template.yaml
