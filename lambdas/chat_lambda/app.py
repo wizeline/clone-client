@@ -30,7 +30,7 @@ def lambda_handler(event: dict, context) -> dict:
         print(response)
     """
     # searcher_url = os.getenv("SEARCHER_URL")
-    # Make the POST request to the other service
+    # Make the POST request to the searcher service
     query = json.loads(event['body'])['query']
     data = {
         "q": query
@@ -42,21 +42,15 @@ def lambda_handler(event: dict, context) -> dict:
         data=json.dumps(data)
     )
 
-    # Handle the response as needed
+    # Handle the response
     if response.status_code == 200:
         # Process the successful response
         result = response.json()
         documents = result["results"]
         llm_response = llm_query(query, documents)
-        return {
-            'statusCode': 200,
-            'body': {"llm_response": llm_response}  # Return the result from the other service
-        }
+        return responses.default(HTTPStatus.OK, {"llm_response": llm_response})
     # Handle an error response
-    return {
-        'statusCode': response.status_code,
-        'body': json.dumps('Error from the other service.')
-    }
+    return responses.default(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": response.json()})
 
 
 def llm_query(query, documents):
