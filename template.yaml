@@ -74,6 +74,29 @@ Resources:
             Method: get
             RestApiId: !Ref CloneClientLambdasAPI
 
+  ChatFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub ${ProjectNamePrefix}-func-handler-${Stage}
+      Description: Client handler for chat endpoint
+      CodeUri: lambdas/chat_lambda
+      Handler: app.lambda_handler
+      Role: !GetAtt DefaultLambdaInvokeRole.Arn
+      PackageType: Zip
+      Layers:
+        - !Ref Layer
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /v1/chat
+            Method: post
+            RestApiId: !Ref CloneClientLambdasAPI
+      Environment:
+        Variables:
+          # TODO: get searcher service URL
+          SEARCHER_URL: "http://127.0.0.1:8000/v1/api/search"
+
 
   # START Roles definition
   DefaultLambdaInvokeRole:
