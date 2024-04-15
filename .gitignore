@@ -21,3 +21,4 @@ env
 .coverage
 test-results.xml
 coverage.xml
+.idea

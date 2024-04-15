@@ -29,6 +29,9 @@ def lambda_handler(event: dict, context) -> dict:
         response = lambda_handler({"key": "value"}, None)
         print(response)
     """
+    # TODO: get JWT from headers, validate
+    # TODO: refactor chat endpoint to /v1/<clone-UUID>/chat
+    # TODO: retrieve data for <clone-uuid> (system message, previous context, project details)
     # searcher_url = os.getenv("SEARCHER_URL")
     # Make the POST request to the searcher service
     query = json.loads(event['body'])['query']
