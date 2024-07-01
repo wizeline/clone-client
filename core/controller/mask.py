@@ -21,7 +21,7 @@ class MaskController(AbstractMaskController):
     Controller for vectorization operations.
     """
 
-    def __init__(self, logger: Logger):
+    def __init__(self, vector_search_url: str, logger: Logger):
         """
         Initialize the Controller.
 
@@ -29,6 +29,7 @@ class MaskController(AbstractMaskController):
             usecase (AbstractUsecase): An instance of a class implementing the AbstractUsecase interface.
         """
         self.logger = logger
+        self.vector_search_url = vector_search_url
 
     def mask(self, request: Dict[str, Any]) -> Tuple[Response, int]:
         """
@@ -52,9 +53,10 @@ class MaskController(AbstractMaskController):
         data = {
             "q": query
         }
+        return jsonify({"error": self.vector_search_url, "qqq": data}, HTTPStatus.OK)
+    
         response = requests.post(
-            'http://host.docker.internal:8000/v1/api/search',
-            # searcher_url,
+            self.vector_search_url,
             headers={'Content-Type': 'application/json'},
             data=json.dumps(data)
         )

@@ -12,7 +12,7 @@ cfg = DevelopmentConfig if IS_LOCAL else Config
 app = Flask(__name__)
 app.config.from_object(cfg)
 
-controller = MaskController(logger)
+controller = MaskController(cfg.VECTOR_SEARCH_URL, logger)
 
 
 @app.route("/v1/chat", methods=["POST"])
