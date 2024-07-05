@@ -1,14 +1,13 @@
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Tuple
 
 
-class AbstractCloneClientController(ABC):
+class AbstractCloneClientUsecase(ABC):
     """
     Abstract class for main controller class.
     """
 
     @abstractmethod
-    def chat(self, request: Dict[str, Any]) -> Tuple[Dict[str, str], int]:
+    def chat(self, query: str) -> str:
         """
         Abstract method to handle vectorization requests.
 
