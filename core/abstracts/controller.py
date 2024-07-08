@@ -8,7 +8,7 @@ class AbstractCloneClientController(ABC):
     """
 
     @abstractmethod
-    def chat(self, request: Dict[str, Any]) -> Tuple[Dict[str, str], int]:
+    async def chat(self, request: Dict[str, Any]) -> Tuple[Dict[str, str], int]:
         """
         Abstract method to handle vectorization requests.
 

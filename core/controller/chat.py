@@ -1,7 +1,6 @@
 from http import HTTPStatus
 from logging import Logger
 from typing import Any, Dict, Tuple
-
 from flask import jsonify, Response
 
 from core.abstracts.controller import AbstractCloneClientController
@@ -24,7 +23,7 @@ class CloneClientController(AbstractCloneClientController):
         self.logger = logger
         self.usecase = usecase
 
-    def chat(self, request: Dict[str, Any]) -> Tuple[Response, int]:
+    async def chat(self, request: Dict[str, Any]) -> Tuple[Response, int]:
         """
         Handle clone client requests.
 
@@ -45,7 +44,7 @@ class CloneClientController(AbstractCloneClientController):
         query = request['query']
 
         try:
-            response = self.usecase.chat(query)
+            response = await self.usecase.chat(query)
             return jsonify({"llm_response": response}, HTTPStatus.OK)
         except Exception as e:
             self.logger.error(e)

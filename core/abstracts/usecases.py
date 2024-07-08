@@ -7,7 +7,7 @@ class AbstractCloneClientUsecase(ABC):
     """
 
     @abstractmethod
-    def chat(self, query: str) -> str:
+    async def chat(self, query: str) -> str:
         """
         Abstract method to handle vectorization requests.
 
