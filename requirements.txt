@@ -1,5 +1,7 @@
 coverage==7.4.1
 Flask==3.0.2
+flask[async]
+en-core-web-trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.7.3/en_core_web_trf-3.7.3-py3-none-any.whl#sha256=f72abb34bdf174876bd4267b29b2501677e605e0a251fdc56c163003182ed68b
 nltk==3.8.1
 opensearch_py==2.4.2
 python-dotenv==1.0.1

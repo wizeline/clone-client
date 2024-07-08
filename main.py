@@ -28,9 +28,9 @@ controller = CloneClientController(usecase, logger)
 
 
 @app.route("/v1/chat", methods=["POST"])
-def chat():
+async def chat():
     try:
         request_data = request.get_json()
-        return controller.chat(request_data)
+        return await controller.chat(request_data)
     except Exception as e:
         return jsonify({"error": "Failed to decode JSON object: " + str(e)}), 400@app.route("/v1/api/chat", methods=["POST"])

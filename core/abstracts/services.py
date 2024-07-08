@@ -8,7 +8,7 @@ class AbstractMaskerService(ABC):
     """
 
     @abstractmethod
-    def llm_query(self, query: str, documents: Any) -> str:
+    async def llm_query(self, query: str, documents: Any) -> str:
         """
         Abstract method to perform a prompt to a LLM
 

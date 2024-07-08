@@ -23,7 +23,7 @@ class CloneClientUsecase(AbstractCloneClientUsecase):
         self.masker = masker
         self.searcher = searcher
 
-    def chat(self, query: str) -> str:
+    async def chat(self, query: str) -> str:
         """
         This method requests documents related to a query and mask sensitive data
 
@@ -41,5 +41,5 @@ class CloneClientUsecase(AbstractCloneClientUsecase):
             raise Exception("no result in response")
 
         documents = search_result["results"]
-        llm_response = self.masker.llm_query(query, documents)
+        llm_response = await self.masker.llm_query(query, documents)
         return llm_response
