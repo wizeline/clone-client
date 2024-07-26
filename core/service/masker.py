@@ -1,11 +1,13 @@
 import json
 from dataclasses import field
-from openai import OpenAI
 from logging import Logger
 from typing import Any, Optional
 
+from openai import OpenAI
+
 from core.abstracts.services import AbstractMaskerService
 from core.service.masks import MaskBase
+
 
 class MaskerService(AbstractMaskerService):
     """
@@ -57,12 +59,7 @@ class MaskerService(AbstractMaskerService):
 
     def query_llm(self, prompt):
         # TODO: context maintenance (system message + previous conversation context, summarize session context for future conversations)
-        messages = [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
+        messages = [{"role": "user", "content": prompt}]
         response = self.client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=messages,
@@ -70,7 +67,7 @@ class MaskerService(AbstractMaskerService):
             max_tokens=256,
             top_p=1,
             frequency_penalty=0,
-            presence_penalty=0
+            presence_penalty=0,
         )
         return response.choices[0].message.content
 
@@ -92,7 +89,7 @@ class MaskerService(AbstractMaskerService):
             for i, item in enumerate(to_mask):
                 if item not in self._mask_lookup.values():
                     lookup_name = f"<{mask.__name__}_{i + 1}>"
-                    print(f'mask: {lookup_name}, item: {item}')
+                    print(f"mask: {lookup_name}, item: {item}")
                     self._mask_lookup[lookup_name] = item
                     data = data.replace(item, lookup_name)
 

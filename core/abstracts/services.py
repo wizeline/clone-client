@@ -20,6 +20,7 @@ class AbstractMaskerService(ABC):
         """
         pass
 
+
 class AbstractOpenSearchService(ABC):
     """
     Abstract class for Open Search services

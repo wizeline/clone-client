@@ -1,0 +1,12 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 8081:8081
+    environment:
+      - DEBUG=${DEBUG}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - IS_LOCAL=%{IS_LOCAL}
+      - VECTOR_SEARCH_URL=${VECTOR_SEARCH_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
