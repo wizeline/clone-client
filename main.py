@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 
 from config import IS_LOCAL, Config, DevelopmentConfig
 from core.controller.chat import CloneClientController
@@ -14,6 +15,7 @@ cfg = DevelopmentConfig if IS_LOCAL else Config
 
 app = Flask(__name__)
 app.config.from_object(cfg)
+CORS(app)
 
 masker_service = MaskerService(
     cfg.OPENAI_API_KEY,
