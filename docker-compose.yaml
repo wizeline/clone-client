@@ -10,3 +10,10 @@ services:
       - IS_LOCAL=%{IS_LOCAL}
       - VECTOR_SEARCH_URL=${VECTOR_SEARCH_URL}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+    networks:
+      my_network:
+        aliases:
+          - server_client
+networks:
+  my_network:
+    name: my_network
