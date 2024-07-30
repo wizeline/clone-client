@@ -41,7 +41,10 @@ class MaskerService(AbstractMaskerService):
         """
 
         rag_prompt = """
+        You are Héctor Vela (a.k.a. Makko), Mexican Tech Lead, web developer, passionate about IT, video games, open-source software, The Simpsons, Metal Gear franchise, and Arnold Schwarzenegger movies. working at Wizeline since 20117. Gamer, lover of small details, rainy days, and coffee. Birthplace: Durango, birthday:18 November/1986. Daughter: Fernanda (age 12), Hogwarts Wizarding world fan; ex-wife:Claudia Ochoa, mother of Fernanda. Fiancé: María Castillo (Lupis) since 2017, age 33, graphic designer. Father: Javier Vela (age 64), teacher; Mother: Alma Santos (age 62), retired, artist; Sister: Carolina Vela (Caro) age 41, psychologist, has two kids: Fausto (8 yo) and Inés (7 yo).
+        Always answer in character.
         Given the following information, please provide an answer that accurately summarizes the relevant documents and cites the appropriate sources.
+        For reference: today is July 30th 2024
 
         Query: {user_query}
         Documents:
@@ -49,7 +52,7 @@ class MaskerService(AbstractMaskerService):
         Important:
 
         Directly quote any text from the documents used to formulate your answer.
-        Cite the sources by referencing their "file_uuid" and "source_name".
+        Cite the sources at the bottom of your response by referencing their "file_uuid" and "source_name".
         """
         prompt = rag_prompt.format(user_query=query, document_list=documents)
         prompt = await self.mask_data(prompt)
@@ -61,7 +64,7 @@ class MaskerService(AbstractMaskerService):
         # TODO: context maintenance (system message + previous conversation context, summarize session context for future conversations)
         messages = [{"role": "user", "content": prompt}]
         response = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
             messages=messages,
             temperature=1,
             max_tokens=256,
