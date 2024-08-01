@@ -1,7 +1,8 @@
 from http import HTTPStatus
 from logging import Logger
 from typing import Any, Dict, Tuple
-from flask import jsonify, Response
+
+from flask import Response, jsonify
 
 from core.abstracts.controller import AbstractCloneClientController
 from core.abstracts.usecases import AbstractCloneClientUsecase
@@ -41,7 +42,7 @@ class CloneClientController(AbstractCloneClientController):
         # TODO: retrieve data for <clone-uuid> (system message, previous context, project details)
         # searcher_url = os.getenv("SEARCHER_URL")
         # Make the POST request to the searcher service
-        query = request['query']
+        query = request["query"]
 
         try:
             response = await self.usecase.chat(query)

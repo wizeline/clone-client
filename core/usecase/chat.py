@@ -1,7 +1,7 @@
 from logging import Logger
 
-from core.abstracts.usecases import AbstractCloneClientUsecase
 from core.abstracts.services import AbstractMaskerService, AbstractOpenSearchService
+from core.abstracts.usecases import AbstractCloneClientUsecase
 
 
 class CloneClientUsecase(AbstractCloneClientUsecase):
@@ -9,7 +9,12 @@ class CloneClientUsecase(AbstractCloneClientUsecase):
     Controller for CloneClient operations.
     """
 
-    def __init__(self, masker: AbstractMaskerService, searcher: AbstractOpenSearchService, logger: Logger):
+    def __init__(
+        self,
+        masker: AbstractMaskerService,
+        searcher: AbstractOpenSearchService,
+        logger: Logger,
+    ):
         """
         Initialize Clone Client.
 

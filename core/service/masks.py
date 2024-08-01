@@ -2,9 +2,9 @@
 """
 
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
 import re
 from abc import ABC, abstractmethod
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, List
 
 import spacy
